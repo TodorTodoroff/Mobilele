@@ -1,6 +1,6 @@
 package bg.softuni.MobileleMineVersion.model.entities.enums;
 
-public enum Categories {
+public enum CategoriesEnum {
     CAR,
     BUSS,
     TRUCK,

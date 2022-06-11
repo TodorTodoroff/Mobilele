@@ -1,7 +1,7 @@
 package bg.softuni.MobileleMineVersion.model.entities;
 
 
-import bg.softuni.MobileleMineVersion.model.entities.enums.Categories;
+import bg.softuni.MobileleMineVersion.model.entities.enums.CategoriesEnum;
 
 import javax.persistence.*;
 
@@ -14,7 +14,7 @@ public class ModelEntity extends BaseEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Categories category;
+    private CategoriesEnum category;
 
     @Column(nullable = false)
     private String imageUrl;
@@ -35,11 +35,11 @@ public class ModelEntity extends BaseEntity {
         return this;
     }
 
-    public Categories getCategory() {
+    public CategoriesEnum getCategory() {
         return category;
     }
 
-    public ModelEntity setCategory(Categories category) {
+    public ModelEntity setCategory(CategoriesEnum category) {
         this.category = category;
         return this;
     }
