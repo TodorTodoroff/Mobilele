@@ -4,8 +4,11 @@ import bg.softuni.MobileleMineVersion.model.dto.UserLogInDTO;
 import bg.softuni.MobileleMineVersion.model.dto.UserRegisterDTO;
 import bg.softuni.MobileleMineVersion.model.services.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -18,32 +21,22 @@ public class UserController {
 
 
     @GetMapping("/users/login")
-    public String login(){
+    public String login() {
         return "auth-login";
     }
 
     @GetMapping("/users/logout")
-    public String logOut(){
+    public String logOut() {
         userService.logOut();
-        return"redirect:/";
+        return "redirect:/";
     }
 
     @PostMapping("/users/login")
-    public String login(UserLogInDTO userLogInDTO){
+    public String login(UserLogInDTO userLogInDTO) {
         System.out.println("User is logged: " + userService.login(userLogInDTO));
         return "redirect:/";
     }
-    @GetMapping("/users/register")
-    public String register() {
-        return "auth-register";
-    }
 
-    @PostMapping("/users/register")
-    public String register(UserRegisterDTO userRegisterDTO){
 
-        userService.registerAndLogin(userRegisterDTO);
-
-        return "redirect:/";
-    }
 
 }

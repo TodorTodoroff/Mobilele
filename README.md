@@ -1,4 +1,6 @@
-��#� Mobilele
+# Mobilele Project
 
-� Under construction
-�
+� Under construction�
+
+Spring Boot Project.
+Documentation yet to be uploaded
