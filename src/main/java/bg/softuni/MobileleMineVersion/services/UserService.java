@@ -11,7 +11,6 @@ import bg.softuni.MobileleMineVersion.user.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -43,8 +42,8 @@ public class UserService {
         UserEntity newUser = userMapper.userDtoToUserEntity(userRegisterDTO);
         newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
-            this.userRepository.save(newUser);
-            login(newUser);
+        this.userRepository.save(newUser);
+        login(newUser);
 
 
     }

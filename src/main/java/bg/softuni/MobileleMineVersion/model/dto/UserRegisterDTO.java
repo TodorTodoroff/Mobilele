@@ -1,18 +1,23 @@
 package bg.softuni.MobileleMineVersion.model.dto;
 
 
+import bg.softuni.MobileleMineVersion.model.validation.FieldMatch;
 import bg.softuni.MobileleMineVersion.model.validation.UniqueUserEmail;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword",
+        message = "Passwords do not match!"
+)
 public class UserRegisterDTO {
 
-    @Email
-    @NotEmpty
-    @UniqueUserEmail(message = "User email should be unique!")
+    @Email(message = "User email should be valid!")
+    @NotEmpty(message = "User email should be provided!")
+    @UniqueUserEmail(message = "User email already taken!")
     private String email;
 
     @NotEmpty
