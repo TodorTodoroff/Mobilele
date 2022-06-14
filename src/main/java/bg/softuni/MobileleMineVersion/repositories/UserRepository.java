@@ -1,4 +1,4 @@
-package bg.softuni.MobileleMineVersion.model.repositories;
+package bg.softuni.MobileleMineVersion.repositories;
 
 
 import bg.softuni.MobileleMineVersion.model.entities.UserEntity;

@@ -1,13 +1,12 @@
-package bg.softuni.MobileleMineVersion.model.services;
+package bg.softuni.MobileleMineVersion.services;
 
 
 import bg.softuni.MobileleMineVersion.model.dto.UserLogInDTO;
 import bg.softuni.MobileleMineVersion.model.dto.UserRegisterDTO;
 import bg.softuni.MobileleMineVersion.model.entities.UserEntity;
-import bg.softuni.MobileleMineVersion.model.repositories.UserRepository;
+import bg.softuni.MobileleMineVersion.repositories.UserRepository;
 
 import bg.softuni.MobileleMineVersion.user.CurrentUser;
-import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
