@@ -10,6 +10,9 @@ import java.math.BigDecimal;
 
 public class OfferAddDTO {
 
+    @NotNull
+    @Min(1)
+    private long modelId;
 
     @NotNull
     private EngineEnum engine;
@@ -41,7 +44,6 @@ public class OfferAddDTO {
 
     @NotEmpty
     private String description;
-
 
 
     public BrandEntity getBrand() {
@@ -114,5 +116,13 @@ public class OfferAddDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public long getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(long modelId) {
+        this.modelId = modelId;
     }
 }
