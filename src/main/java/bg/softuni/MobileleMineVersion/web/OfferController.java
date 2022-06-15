@@ -25,7 +25,10 @@ public class OfferController {
 
 
     @GetMapping("/offers/all")
-    public String allOffers() {
+    public String allOffers(Model model) {
+
+        model.addAttribute("modelAllOffers", this.offerService.getAllOffers());
+
         return "offers";
     }
 
@@ -60,5 +63,10 @@ public class OfferController {
         return "redirect:/offers/all";
     }
 
+
+    @GetMapping("/offers/details")
+    public String offerDetails(){
+        return "details";
+    }
 
 }

@@ -12,6 +12,7 @@ import bg.softuni.MobileleMineVersion.repositories.UserRepository;
 import bg.softuni.MobileleMineVersion.user.CurrentUser;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,5 +51,10 @@ public class OfferService {
         offer.setSeller(userEntity);
 
         this.offerRepository.save(offer);
+    }
+
+    public List<OfferEntity> getAllOffers() {
+
+        return this.offerRepository.findAll();
     }
 }
