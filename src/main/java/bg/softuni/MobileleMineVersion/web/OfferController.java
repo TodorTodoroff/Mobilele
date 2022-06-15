@@ -1,12 +1,14 @@
 package bg.softuni.MobileleMineVersion.web;
 
 import bg.softuni.MobileleMineVersion.model.dto.AddOfferDTO;
+import bg.softuni.MobileleMineVersion.model.entities.OfferEntity;
 import bg.softuni.MobileleMineVersion.services.BrandService;
 import bg.softuni.MobileleMineVersion.services.OfferService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,10 +34,17 @@ public class OfferController {
         return "offers";
     }
 
+
+    @GetMapping("/offers/details")
+    public String offerDetails() {
+        return "details";
+    }
+
+
     @GetMapping("/offers/add")
     public String addOffer(Model model) {
 
-        if (!model.containsAttribute("offerAddModel")){
+        if (!model.containsAttribute("offerAddModel")) {
             model.addAttribute("offerAddModel", new AddOfferDTO());
         }
 
@@ -63,10 +72,5 @@ public class OfferController {
         return "redirect:/offers/all";
     }
 
-
-    @GetMapping("/offers/details")
-    public String offerDetails(){
-        return "details";
-    }
 
 }
