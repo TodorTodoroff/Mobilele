@@ -1,32 +1,54 @@
 package bg.softuni.MobileleMineVersion.services;
 
 
-import bg.softuni.MobileleMineVersion.model.dto.BrandDTO;
-import bg.softuni.MobileleMineVersion.model.dto.OfferAddDTO;
+import bg.softuni.MobileleMineVersion.model.dto.AddOfferDTO;
+import bg.softuni.MobileleMineVersion.model.entities.ModelEntity;
+import bg.softuni.MobileleMineVersion.model.entities.OfferEntity;
+import bg.softuni.MobileleMineVersion.model.entities.UserEntity;
+import bg.softuni.MobileleMineVersion.model.mapper.OfferMapper;
+import bg.softuni.MobileleMineVersion.repositories.ModelRepository;
 import bg.softuni.MobileleMineVersion.repositories.OfferRepository;
+import bg.softuni.MobileleMineVersion.repositories.UserRepository;
+import bg.softuni.MobileleMineVersion.user.CurrentUser;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OfferService {
 
     private OfferRepository offerRepository;
-    private BrandService brandService;
+    private OfferMapper offerMapper;
+    private UserRepository userRepository;
+    private CurrentUser currentUser;
+    private ModelRepository modelRepository;
 
 
-    public OfferService(OfferRepository offerRepository, BrandService brandService) {
+    public OfferService(OfferRepository offerRepository,
+                        OfferMapper offerMapper,
+                        UserRepository userRepository,
+                        CurrentUser currentUser, ModelRepository modelRepository) {
         this.offerRepository = offerRepository;
-        this.brandService = brandService;
+        this.offerMapper = offerMapper;
+        this.userRepository = userRepository;
+        this.currentUser = currentUser;
+        this.modelRepository = modelRepository;
     }
 
 
-    public List<BrandDTO> getAllBrands() {
-        return this.brandService.getAllBrands();
-    }
+    public void addOffer(AddOfferDTO offerAddModel) {
 
-    public void addOffer(OfferAddDTO offerAddModel) {
+        OfferEntity offer = offerMapper.addOfferDtoToOfferEntity(offerAddModel);
 
+        //TODO current user should be logged in
 
+        UserEntity userEntity = userRepository.findByEmail(currentUser.getEmail()).orElseThrow();
+
+        ModelEntity modelEntity = this.modelRepository.findById(offerAddModel.getModelId()).orElseThrow();
+
+        offer.setModel(modelEntity);
+        offer.setSeller(userEntity);
+
+        this.offerRepository.save(offer);
     }
 }

@@ -1,6 +1,6 @@
 package bg.softuni.MobileleMineVersion.web;
 
-import bg.softuni.MobileleMineVersion.model.dto.OfferAddDTO;
+import bg.softuni.MobileleMineVersion.model.dto.AddOfferDTO;
 import bg.softuni.MobileleMineVersion.services.BrandService;
 import bg.softuni.MobileleMineVersion.services.OfferService;
 import org.springframework.stereotype.Controller;
@@ -33,7 +33,7 @@ public class OfferController {
     public String addOffer(Model model) {
 
         if (!model.containsAttribute("offerAddModel")){
-            model.addAttribute("offerAddModel", new OfferAddDTO());
+            model.addAttribute("offerAddModel", new AddOfferDTO());
         }
 
         model.addAttribute("brands", brandService.getAllBrands());
@@ -43,7 +43,7 @@ public class OfferController {
 
 
     @PostMapping("/offers/add")
-    public String addOffer(@Valid OfferAddDTO offerAddModel,
+    public String addOffer(@Valid AddOfferDTO offerAddModel,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
 
@@ -57,7 +57,7 @@ public class OfferController {
 
         offerService.addOffer(offerAddModel);
 
-        return "redirect:/";
+        return "redirect:/offers/all";
     }
 
 

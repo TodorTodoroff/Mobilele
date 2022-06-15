@@ -12,12 +12,15 @@ public class CurrentUser {
 
     private boolean loggedIn;
 
+    private String email;
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public CurrentUser setName(String name) {
         this.name = name;
+        return this;
     }
 
     public boolean isLoggedIn() {
@@ -28,12 +31,21 @@ public class CurrentUser {
         this.loggedIn = loggedIn;
         return this;
     }
+    public String getEmail() {
+        return email;
+    }
 
+    public CurrentUser setEmail(String email) {
+        this.email = email;
+        return this;
+    }
     public void clear(){
         loggedIn = false;
         name = null;
     }
+
     public boolean isAnonymous(){
         return  !isLoggedIn();
     }
+
 }
