@@ -1,35 +1,29 @@
 package bg.softuni.MobileleMineVersion.model.dto;
 
-import bg.softuni.MobileleMineVersion.model.entities.ModelEntity;
 import bg.softuni.MobileleMineVersion.model.entities.enums.EngineEnum;
 import bg.softuni.MobileleMineVersion.model.entities.enums.TransmissionEnum;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class OfferAddDTO {
 
-    private String engine;
 
+    @NotNull
+    private EngineEnum engine;
+
+    @NotEmpty
     private String imageUrl;
 
-    private int mileage;
+    @NotNull
+    private TransmissionEnum transmission;
 
-    private BigDecimal price;
-
-    private String description;
-
-    private String transmission;
-
-    private int year;
-
-    private String model;
-
-
-    public String getEngine() {
+    public EngineEnum getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    public void setEngine(EngineEnum engine) {
         this.engine = engine;
     }
 
@@ -41,51 +35,11 @@ public class OfferAddDTO {
         this.imageUrl = imageUrl;
     }
 
-    public int getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(int mileage) {
-        this.mileage = mileage;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTransmission() {
+    public TransmissionEnum getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(String transmission) {
+    public void setTransmission(TransmissionEnum transmission) {
         this.transmission = transmission;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 }

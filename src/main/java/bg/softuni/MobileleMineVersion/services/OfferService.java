@@ -9,18 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class OfferService {
 
-private OfferRepository offerRepository;
-
+    private OfferRepository offerRepository;
 
 
     public OfferService(OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
     }
 
-    public void AddOffer(OfferAddDTO offerAddDTO){
+
+    public void addOffer(OfferAddDTO offerAddModel) {
 
 
     }
-
-
 }
