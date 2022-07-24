@@ -9,7 +9,6 @@ import bg.softuni.MobileleMineVersion.model.mapper.OfferMapper;
 import bg.softuni.MobileleMineVersion.repositories.ModelRepository;
 import bg.softuni.MobileleMineVersion.repositories.OfferRepository;
 import bg.softuni.MobileleMineVersion.repositories.UserRepository;
-import bg.softuni.MobileleMineVersion.user.CurrentUser;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,18 +20,16 @@ public class OfferService {
     private OfferRepository offerRepository;
     private OfferMapper offerMapper;
     private UserRepository userRepository;
-    private CurrentUser currentUser;
     private ModelRepository modelRepository;
 
 
     public OfferService(OfferRepository offerRepository,
                         OfferMapper offerMapper,
                         UserRepository userRepository,
-                        CurrentUser currentUser, ModelRepository modelRepository) {
+                       ModelRepository modelRepository) {
         this.offerRepository = offerRepository;
         this.offerMapper = offerMapper;
         this.userRepository = userRepository;
-        this.currentUser = currentUser;
         this.modelRepository = modelRepository;
     }
 
@@ -41,14 +38,12 @@ public class OfferService {
 
         OfferEntity offer = offerMapper.addOfferDtoToOfferEntity(offerAddModel);
 
-        //TODO current user should be logged in
-
-        UserEntity userEntity = userRepository.findByEmail(currentUser.getEmail()).orElseThrow();
+     //   UserEntity userEntity = userRepository.findByEmail(currentUser.getEmail()).orElseThrow();
 
         ModelEntity modelEntity = this.modelRepository.findById(offerAddModel.getModelId()).orElseThrow();
 
         offer.setModel(modelEntity);
-        offer.setSeller(userEntity);
+    //    offer.setSeller(userEntity);
 
         this.offerRepository.save(offer);
     }
