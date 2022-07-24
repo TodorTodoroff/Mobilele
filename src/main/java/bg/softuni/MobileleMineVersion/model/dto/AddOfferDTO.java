@@ -100,4 +100,5 @@ public class AddOfferDTO {
     public void setMileage(Integer mileage) {
         this.mileage = mileage;
     }
+
 }
