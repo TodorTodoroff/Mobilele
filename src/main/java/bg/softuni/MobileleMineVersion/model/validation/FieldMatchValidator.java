@@ -8,9 +8,9 @@ import javax.validation.ConstraintValidatorContext;
 
 public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
 
-   private String first;
-   private String second;
-   private String message;
+    private String first;
+    private String second;
+    private String message;
 
 
     @Override
@@ -31,13 +31,13 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
 
         boolean valid;
 
-        if (firstValue == null){
+        if (firstValue == null) {
             valid = secondValue == null;
-        }else {
+        } else {
             valid = firstValue.equals(secondValue);
         }
 
-        if (!valid){
+        if (!valid) {
             context.
                     buildConstraintViolationWithTemplate(message).
                     addPropertyNode(second).
