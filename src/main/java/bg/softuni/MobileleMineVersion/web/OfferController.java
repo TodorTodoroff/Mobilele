@@ -4,6 +4,9 @@ import bg.softuni.MobileleMineVersion.model.dto.AddOfferDTO;
 import bg.softuni.MobileleMineVersion.model.entities.OfferEntity;
 import bg.softuni.MobileleMineVersion.services.BrandService;
 import bg.softuni.MobileleMineVersion.services.OfferService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,9 +33,16 @@ public class OfferController {
 
 
     @GetMapping("/offers/all")
-    public String allOffers(Model model) {
+    public String allOffers(
+            Model model,
+            @PageableDefault(
+                    sort = "price",
+                    direction = Sort.Direction.ASC,
+                    page = 0,
+                    size = 5) Pageable pageable) {
 
-        model.addAttribute("modelAllOffers", this.offerService.getAllOffers());
+
+        model.addAttribute("offers", this.offerService.getAllOffers(pageable));
 
         return "offers";
     }
@@ -73,6 +84,13 @@ public class OfferController {
         offerService.addOffer(offerAddModel, userDetails);
 
         return "redirect:/offers/all";
+    }
+
+
+    @GetMapping("/offers/{id}/details")
+    public String getOfferDetail(@PathVariable("id") Long id) {
+
+        return "details";
     }
 
 
