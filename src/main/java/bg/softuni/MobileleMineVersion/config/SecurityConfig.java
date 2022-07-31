@@ -34,9 +34,7 @@ public class SecurityConfig {
                 // everyone can login and register
                         antMatchers("/", "/users/login", "/users/register").permitAll().
                 // all other pages are available for logger in users
-                        anyRequest().
-                authenticated().
-                and().
+                        anyRequest().authenticated().and().
                 // configuration of form login
                         formLogin().
                 // the custom login form
@@ -48,16 +46,13 @@ public class SecurityConfig {
                 // where to go in case that the login is successful
                         defaultSuccessUrl("/").
                 // where to go in case that the login failed
-                        failureForwardUrl("/users/login-error").
-                and().
+                        failureForwardUrl("/users/login-error").and().
                 // configure logut
                         logout().
                 // which is the logout url
-                        logoutUrl("/users/logout").
-                        logoutSuccessUrl("/").
+                        logoutUrl("/users/logout").logoutSuccessUrl("/").
                 // invalidate the session and delete the cookies
-                        invalidateHttpSession(true).
-                deleteCookies("JSESSIONID");
+                        invalidateHttpSession(true).deleteCookies("JSESSIONID");
 
 
         return http.build();
