@@ -30,7 +30,7 @@ public class OfferService {
     public OfferService(OfferRepository offerRepository,
                         OfferMapper offerMapper,
                         UserRepository userRepository,
-                       ModelRepository modelRepository) {
+                        ModelRepository modelRepository) {
         this.offerRepository = offerRepository;
         this.offerMapper = offerMapper;
         this.userRepository = userRepository;
@@ -53,10 +53,17 @@ public class OfferService {
     }
 
 
-
-    public Page<OfferDetailDTO> getAllOffers(Pageable pageable){
+    public Page<OfferDetailDTO> getAllOffers(Pageable pageable) {
         return offerRepository.
                 findAll(pageable)
                 .map(offerMapper::offerEntityToCardListingOfferDto);
+    }
+
+    public OfferEntity getOfferById(Long id) {
+        return this.offerRepository.findById(id).get();
+    }
+
+    public void deleteOffer(Long id) {
+        this.offerRepository.deleteById(id);
     }
 }

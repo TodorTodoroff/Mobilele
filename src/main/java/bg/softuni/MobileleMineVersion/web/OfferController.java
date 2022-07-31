@@ -88,9 +88,17 @@ public class OfferController {
 
 
     @GetMapping("/offers/{id}/details")
-    public String getOfferDetail(@PathVariable("id") Long id) {
-
+    public String getOfferDetail(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("offer", this.offerService.getOfferById(id));
         return "details";
+    }
+
+    @GetMapping("/offers/{id}/delete")
+    public String delete(@PathVariable("id") Long id) {
+
+        this.offerService.deleteOffer(id);
+
+        return "redirect:/offers/all";
     }
 
 

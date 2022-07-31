@@ -89,6 +89,10 @@ import java.util.List;
             return this;
         }
 
+        public String getFullName(){
+            return firstName + " " + lastName;
+        }
+
         @Override
         public String toString() {
             return "UserEntity{" +
