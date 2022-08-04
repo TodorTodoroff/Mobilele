@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
+    //TODO notes
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
