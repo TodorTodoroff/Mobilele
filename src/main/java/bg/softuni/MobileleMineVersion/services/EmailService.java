@@ -8,6 +8,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.Locale;
 
 @Service
 public class EmailService {
@@ -25,7 +26,8 @@ public class EmailService {
 
     public void sendRegistrationEmail(
             String userEmail,
-            String userName
+            String userName,
+            Locale preferredLocale
     ) {
 
         MimeMessage message = javaMailSender.createMimeMessage();
@@ -36,7 +38,7 @@ public class EmailService {
             mimeMessageHelper.setFrom("mobilele@mobilele.com");
             mimeMessageHelper.setTo(userEmail);
             mimeMessageHelper.setSubject("Welcome to Mobilele!");
-            mimeMessageHelper.setText(generateMessageContent(userName), true);
+            mimeMessageHelper.setText(generateMessageContent(userName, preferredLocale), true);
 
             javaMailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException e) {
@@ -44,9 +46,10 @@ public class EmailService {
         }
     }
 
-    private String generateMessageContent(String userName) {
+    private String generateMessageContent(String userName, Locale locale) {
 
         Context ctx = new Context();
+        ctx.setLocale(locale);
         ctx.setVariable("userName", userName);
 
         return templateEngine.process("email/registration", ctx);
